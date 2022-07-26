@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\LinkList.dir/objects.a
+C:\cmake\MinGW\bin\ar.exe cr CMakeFiles\LinkList.dir/objects.a @CMakeFiles\LinkList.dir\objects1.rsp
+C:\cmake\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\LinkList.dir/objects.a -Wl,--no-whole-archive  -o LinkList.exe -Wl,--out-implib,libLinkList.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\LinkList.dir\linklibs.rsp

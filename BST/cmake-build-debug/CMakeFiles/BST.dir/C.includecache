@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/DataStructure/BST/BST.h
+
+D:/DataStructure/BST/main.c
+stdio.h
+-
+stdlib.h
+-
+BST.h
+D:/DataStructure/BST/BST.h
+
