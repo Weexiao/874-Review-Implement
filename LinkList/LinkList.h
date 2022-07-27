@@ -8,14 +8,14 @@
 #endif //LINKLIST_LINKLIST_H
 
 typedef struct LNode{                   // 定义单链表结点类型
-    int data;                      // 每个结点存放一个数据元素
+    int data;                           // 每个结点存放一个数据元素
     struct LNode *next;                 // 指针指向下一个结点
 }LNode, *LinkList;
 
-//typedef struct DNode{                        // 定义双链表结点类型
-//    ElemType data;                           // 每个结点存放一个数据元素
-//    struct DNode *prior, *next;              // 前驱和后继结点
-//}DNode, *DLinkList;
+typedef struct DNode{                   // 定义双链表结点类型
+   int data;                            // 每个结点存放一个数据元素
+   struct DNode *prior, *next;          // 前驱和后继结点
+}DNode, *DLinkList;
 
 // 初始化
 // 初始化一个空的链表 (带头节点)

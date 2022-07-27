@@ -16,59 +16,71 @@ typedef struct{
 
 // 基本操作--初始化顺序表
 void InitSqList(SqList *L){
-    for(int i = 0; i < MaxSize; i++)
+    for (int i = 0; i < L->Length; i++)
+    {
         L->data[i] = 0;
+    }
     L->Length = 0;
 }
 
 // 基本操作--插入元素
 int ListInsert(SqList *L, int i, int e){
-    if (L->Length == MaxSize) {
-        printf("Sorry, this list is full!");
+    if (L->Length == MaxSize)
+    {
+        printf("Sorry, this list is full");
         return 0;
     }
-    if (i <= 1 || i >= L->Length+1) {
+    if (i < 1 || i > L->Length)
+    {
         printf("Sorry, this list is not that long");
         return 0;
     }
-    for (int j = L->Length; j >=i ; j--) {
-        L->data[j] = L->data[j-1];     // 整体往后移
+    for (int j = L->Length; j >= i; j--)
+    {
+        L->data[j] = L->data[j-1];
     }
-    L->data[i-1] = e;                  // 插入
-    L->Length++;                       // 长度加1
-
+    L->data[i-1] = e;
+    L->Length++;
     return 1;
 }
 
 int ListDelete(SqList *L, int i, int *e){
-    if (i <= 1 || i >= L->Length+1) {
+    if (L->Length == 0)
+    {
+        printf("Sorry, this list has nothing");
+        return 0;
+    }
+    if (i < 1 || i > L->Length)
+    {
         printf("Sorry, this list is not that long");
         return 0;
     }
-    *e = L->data[i-1];                  // 保存删除的值
-    for (int j = i; j < L->Length; ++j) {
-        L->data[j-1] = L->data[j];      // 将i+1后的元素往前移动
+    *e = L->data[i-1];
+    for (int j = i; j < L->Length ; j++)
+    {
+        L->data[j-1] = L->data[j];
     }
-    L->Length--;                        //长度减1
+    L->Length--;
+    return 1;
 }
 
 // 基本操作--初始化顺序表
 void InitSeqList(SeqList *L){
-    // 使用malloc函数申请一篇连续的存储空间
-    L->data = (int *)malloc(InitSize * sizeof(int));
-    L->Length = 0;
+    L->data = (int *)malloc(sizeof(int)*InitSize);
     L->Maxsize = InitSize;
+    L->Length = 0;
 }
 
 // 基本操作--动态增加数组的长度
 void IncreaseSize(SeqList *L, int len){
     int *p = L->data;
-    L->data = (int *)malloc((L->Maxsize + len) * sizeof(int));
-    for (int i = 0; i < L->Length; ++i) {
-        L->data[i] = p[i];           //将数据复制到新区域
+    L->data = (int *)malloc(sizeof(int)*(L->Maxsize+len));
+    for (int i = 0; i < L->Length; i++)
+    {
+        L->data[i] = p[i];
     }
-    L->Maxsize = L->Maxsize+len;    //修改顺序表最大长度
-    free(p);                        //释放原来的内存空间
+    L->Maxsize = L->Maxsize + len;
+    free(p);
 }
 
 // 基本操作--按位查找
@@ -78,10 +90,13 @@ int GetElem(SqList L, int *i){
 
 // 基本操作--按值查找
 int LocateElem(SqList L, int e){
-    for (int i = 0; i < L.Length; ++i) {
-        if (e == L.data[i]){
+    for (int i = 0; i < L.Length; i++)
+    {
+        if (e == L.data[i])
+        {
             return i+1;
         }
+        
     }
     return 0;
 }
