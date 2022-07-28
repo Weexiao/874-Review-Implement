@@ -231,6 +231,74 @@ LinkList Reverse(LinkList *L){
     return *L;
 }
 
+// 初始化双链表
+int InitDLinkList(DLinkList *L){
+    (*L) = (DNode *)malloc(sizeof(DNode));
+    if ((*L) == NULL)
+    {
+        printf("头节点创建失败");
+        return 0;
+    }
+    (*L)->next = NULL;
+    (*L)->prior = NULL;
+    return 1;
+}
+// 判断双链表是否为空(带头节点)
+int DEmpty(DLinkList L){
+    if(L == NULL)
+    {
+        printf("输入的双链表为空");
+        return 0;
+    }
+    return L->next==NULL;
+}
+// 在p节点后插入q节点
+int InsertNextDNode(DNode *p, DNode *q){
+    if (p==NULL || q==NULL)
+    {
+        printf("输入的双链表节点为空");
+        return 0;
+    }
+    q->next = p->next;
+    if (p->next != NULL)
+    {
+        p->next->prior = q;
+    }
+    p->next = q;
+    q->prior = p;
+    return 1;
+}
+// 删除p节点的后继节点
+int DeleteNextDNode(DNode *p){
+    if (p == NULL)
+    {
+        printf("输入的双链表节点为空");
+        return 0;
+    }
+    DNode *q = p->next;
+    if (q == NULL)
+    {
+        printf("当前节点无后继节点");
+        return 0;
+    }
+    p->next = q->next;
+    if (q->next != NULL)
+    {
+        q->next->prior = p;
+    }
+    free(q);
+    return 1;
+}
+// 删除双链表
+void DestoryDList(DLinkList *L){
+    while ((*L)->next != NULL)
+    {
+        DeleteNextDNode((*L));
+    }
+    free(*L);
+    *L=NULL;
+}
+
 int main(){
     LinkList L;
     InitList(&L);
@@ -246,5 +314,20 @@ int main(){
     printf("x = %d\n", x);
     printf("L is empty ? true:1 or false:0 | %d\n", Empty(L));
     printf("len = %d\n", Length(L));
+
+    // 循环链表
+    DLinkList DL;
+    InitDLinkList(&DL);
+    printf("DL is empty ? true:1 or false:0 | %d\n", DEmpty(DL));
+    DNode *p = (DNode *)malloc(sizeof(DNode));
+    p->data=1;
+    p->next=NULL;
+    p->prior=NULL;
+    InsertNextDNode(DL, p);
+    printf("DL is empty ? true:1 or false:0 | %d\n", DEmpty(DL));
+    DeleteNextDNode(DL);
+    printf("DL is empty ? true:1 or false:0 | %d\n", DEmpty(DL));
+    DestoryDList(&DL);
+    printf("DL is NULL ? true:1 or false:0 | %d\n", DL==NULL);
     return 0;
 }

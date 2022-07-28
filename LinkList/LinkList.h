@@ -17,6 +17,13 @@ typedef struct DNode{                   // 定义双链表结点类型
    struct DNode *prior, *next;          // 前驱和后继结点
 }DNode, *DLinkList;
 
+// 静态链表
+#define MAXSIZE 10
+typedef struct{
+    int data;
+    int next;
+}SLinkList[MAXSIZE];
+
 // 初始化
 // 初始化一个空的链表 (带头节点)
 int InitList(LinkList *L);
@@ -53,3 +60,14 @@ LinkList List_HeadInsert(LinkList *L);
 
 // 链表逆置
 LinkList Reverse(LinkList *L);
+
+// 初始化双链表
+int InitDLinkList(DLinkList *L);
+// 判断双链表是否为空(带头节点)
+int DEmpty(DLinkList L);
+// 在p节点后插入q节点
+int InsertNextDNode(DNode *p, DNode *q);
+// 删除p节点的后继节点
+int DeleteNextDNode(DNode *p);
+// 删除双链表
+void DestoryDList(DLinkList *L);
