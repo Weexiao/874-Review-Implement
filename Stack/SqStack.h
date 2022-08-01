@@ -2,7 +2,7 @@
 #define MAXSIZE 20
 typedef struct
 {
-    int data[MAXSIZE];
+    char data[MAXSIZE];
     int top;
 }SqStack;
 
@@ -15,34 +15,63 @@ void InitStack(SqStack *S){
 int StackEmpty(SqStack S){
     return S.top == -1;
 }
-int Push(SqStack *S, int x){
+int Push(SqStack *S, char x){
     // 判满
     if ((*S).top == MAXSIZE-1)
     {
-        printf("栈已满，无法插入");
         return 0;
     }
     (*S).top += 1;
     (*S).data[(*S).top] = x;
     return 1;
 }
-int Pop(SqStack *S, int *x){
+int Pop(SqStack *S, char *x){
     // 判空
     if (StackEmpty(*S))
     {
-        printf("栈空，无法弹出");
         return 0;
     }
     (*x) = (*S).data[(*S).top];
     (*S).top -= 1;
     return 1;
 }
-int GetTop(SqStack S, int *x){
+int GetTop(SqStack S, char *x){
     if (StackEmpty(S))
     {
-        printf("栈空，无法弹出");
         return 0;
     }
     *x = S.data[S.top];
     return 1;
+}
+int bracketCheck(char str[], int length){
+    SqStack S;
+    InitStack(&S);
+    for (int i = 0; i < length; i++)
+    {
+        if (str[i]=='(' || str[i]=='[' || str[i]=='{')
+        {
+            Push(&S, str[i]);
+        }
+        else{
+            if (StackEmpty(S))
+            {
+                return 0;
+            }
+            char topElem;
+            Pop(&S, &topElem);
+            if (str[i]==')' && topElem!='(')
+            {
+                return 0;
+            }
+            if (str[i]==']' && topElem!='[')
+            {
+                return 0;
+            }
+            if (str[i]=='}' && topElem!='{')
+            {
+                return 0;
+            }
+        }
+    }
+    return StackEmpty(S);
 }
