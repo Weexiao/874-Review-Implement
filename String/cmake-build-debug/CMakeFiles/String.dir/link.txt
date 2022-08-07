@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\String.dir/objects.a
-C:\cmake\MinGW\bin\ar.exe cr CMakeFiles\String.dir/objects.a @CMakeFiles\String.dir\objects1.rsp
-C:\cmake\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\String.dir/objects.a -Wl,--no-whole-archive  -o String.exe -Wl,--out-implib,libString.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\String.dir\linklibs.rsp
