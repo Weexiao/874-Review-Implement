@@ -49,7 +49,7 @@ int SubString(SString *Sub, SString S, int pos, int len){
     }
     for (int i = pos; i < pos+len; i++)
     {
-        (*Sub).ch[i]=S.ch[i];
+        (*Sub).ch[i-pos+1]=S.ch[i];
     }
     (*Sub).length=len;
     return 1;
@@ -70,7 +70,8 @@ int StrLength(SString S){
     return S.length;
 }
 
-int Index(SString S, SString T){
+// O(mn)
+int Index_Traverse(SString S, SString T){
     int i = 1, n = StrLength(S), m = StrLength(T);
     SString sub;
     while (i <= n-m+1)
@@ -85,6 +86,32 @@ int Index(SString S, SString T){
         }
     }
     return 0;
+}
+
+// 最好O(m)，最差O(mn)
+// 跳跃着实现，因为子串比较实际上只需要主串i动即可
+int Index_Jump(SString S, SString T){
+    int i=1, j=1;
+    while (i<=S.length && j<=T.length)
+    {
+        if (S.ch[i] == T.ch[i])
+        {
+            ++i, ++j;
+        }
+        else
+        {
+            i = i-j+2;          //跳到下一个子串的第一个位置
+            j=1;
+        }
+    }
+    if (j > T.length)
+    {
+        return i-T.length;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 int Index_KMP(SString S, SString T, int next[]){

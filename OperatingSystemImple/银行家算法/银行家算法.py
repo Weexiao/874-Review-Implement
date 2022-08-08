@@ -1,4 +1,5 @@
 import numpy as np
+print("Please input n(how many process) and m(how many resource)")
 n, m = map(int, input().split())
 Max, Allocation, Need = [[0] * m for i in range(n)], [[0] * m for i in range(n)], [[0] * m for i in range(n)]
 Request, Available = [0] * m, [0] * m
@@ -17,6 +18,7 @@ for i in range(n):
     Allocation[i] = np.array(list(map(int, input().split())))
 print("Need")
 Need = Max - Allocation
+print(Need)
 print("Request")
 Request = np.array(list(map(int, input().split())))
 print("Available")
@@ -81,5 +83,5 @@ class Banker:
             return False
 
 b = Banker(n, m, Max, Allocation, Need, Available)
-print(b.isSafe())
-print(b.requestSafe(0, Request))
+print("Safe?:", b.isSafe())
+print("Banker?:", b.requestSafe(0, Request))
