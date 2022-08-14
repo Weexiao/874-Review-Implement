@@ -1,3 +1,0 @@
-D:/DataStructure/ThreadTree/cmake-build-debug/CMakeFiles/ThreadTree.dir
-D:/DataStructure/ThreadTree/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/DataStructure/ThreadTree/cmake-build-debug/CMakeFiles/rebuild_cache.dir
