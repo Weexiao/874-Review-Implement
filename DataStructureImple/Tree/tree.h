@@ -95,3 +95,24 @@ int BiTreeDepth(BiTree tree){
         return l>r ? l+1 : r+1; 
     }
 }
+
+// void LevelOrder(BiTree tree)
+// {
+//     LinkQueue Q;
+//     InitLQueue(&Q);
+//     BiTree p;
+//     EnLQueue(&Q, T);
+//     while (!LQueueEmpty(Q))
+//     {
+//         DeLQueue(&Q, p);
+//         printf("%d ", p->data);
+//         if (p->lchild!=NULL)
+//         {
+//             EnLQueue(&Q, p->lchild);
+//         }
+//         if (p->rchild!=NULL)
+//         {
+//             EnLQueue(&Q, p->rchild);
+//         }
+//     }
+// }

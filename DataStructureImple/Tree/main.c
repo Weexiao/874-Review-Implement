@@ -20,5 +20,9 @@ int main(){
     printf("\n");
 
     printf("该树的深度为：%d", BiTreeDepth(tree));
+
+    // printf("LevelOrder:");
+    // LevelOrder(tree);
+    // printf("\n");
     return 1;
 }
