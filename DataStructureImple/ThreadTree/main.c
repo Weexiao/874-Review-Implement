@@ -6,6 +6,8 @@ int main() {
     ThreadTree tree;
     InitThreadTree(&tree);
     AssignThreadTree(&tree);
+
+    // 中序线索树
     CreateInThread(&tree);
 
     printf("InOrder:");

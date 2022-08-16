@@ -25,7 +25,7 @@ int InitThreadTree(ThreadTree *tree){
     (*tree)->rchild = NULL;
     return 1;
 }
-ThreadTree AssignThreadTree(ThreadTree *tree){
+void AssignThreadTree(ThreadTree *tree){
     int i;
     printf("请输入树节点数据\n");
     scanf("%d", &i);
@@ -39,16 +39,17 @@ ThreadTree AssignThreadTree(ThreadTree *tree){
     }
 }
 
-// 全局变量pre
+// 全局变量pre，指向当前访问节点的前驱
 ThreadNode *pre = NULL;
 
 void visit(ThreadNode *q){
-    if (q->lchild == NULL){
-        // 左孩子为空则指向前驱
+    if (q->lchild == NULL)
+    {
         q->lchild = pre;
         q->ltag = 1;
     }
-    if (pre != NULL && pre->rchild == NULL){
+    if (pre!=NULL && pre->rchild==NULL)
+    {
         pre->rchild = q;
         pre->rtag = 1;
     }
@@ -64,11 +65,13 @@ void PreThread(ThreadTree *T){
     }
 }
 void InThread(ThreadTree *T){
-    if (*T != NULL){
+    if ((*T) != NULL)
+    {
         InThread(&((*T)->lchild));
         visit(*T);
         InThread(&((*T)->rchild));
     }
+    
 }
 void PostThread(ThreadTree *T){
     if (*T != NULL){
@@ -87,12 +90,16 @@ void CreatePreThread(ThreadTree *T){
     }
 }
 void CreateInThread(ThreadTree *T){
-    pre = NULL;
-    if (*T != NULL){
+    pre=NULL;
+    if ((*T) != NULL)
+    {
         InThread(T);
         if (pre->rchild == NULL)
-            pre->rtag = 1;
+        {
+            pre->rtag = 1; // 处理最后一个节点
+        }
     }
+    
 }
 void CreatePostThread(ThreadTree *T){
     pre = NULL;
@@ -104,43 +111,44 @@ void CreatePostThread(ThreadTree *T){
 }
 
 // 中序遍历第一个节点
-ThreadNode *FirstNode(ThreadNode *p){
+ThreadNode *InFirstNode(ThreadNode *p){
     while (p->ltag == 0)
         p = p->lchild;
     return p;
 }
 // 中序遍历后继
-ThreadNode *NextNode(ThreadNode *p){
+ThreadNode *InNextNode(ThreadNode *p){
     if (p->rtag == 0)
-        return FirstNode(p->rchild);
+        return InFirstNode(p->rchild);
     else
         return p->rchild;
 }
 // 中序遍历，非递归
 void InOrder(ThreadTree p){
-    for (ThreadNode *i = FirstNode(p); i != NULL ; i = NextNode(i)) {
+    for (ThreadNode *i = InFirstNode(p); i != NULL ; i = InNextNode(i)) {
         printf("%d ", i->data);
     }
     printf("\n");
 }
 
 // 中序遍历最后一个节点
-ThreadNode *LastNode(ThreadNode *p){
+ThreadNode *InLastNode(ThreadNode *p){
     while (p->rtag == 0)
         p = p->rchild;
     return p;
 }
 // 中序遍历前驱
-ThreadNode *PreNode(ThreadNode *p){
+ThreadNode *InPreNode(ThreadNode *p){
     if (p->ltag == 0)
-        return LastNode(p->lchild);
+        return InLastNode(p->lchild);
     else
         return p->lchild;
 }
 // 逆中序遍历，非递归
 void RevInOrder(ThreadTree p){
-    for (ThreadNode *i = LastNode(p); i != NULL; i=PreNode(i)) {
+    for (ThreadNode *i = InLastNode(p); i != NULL; i=InPreNode(i)) {
         printf("%d ", i->data);
     }
     printf("\n");
 }
+
