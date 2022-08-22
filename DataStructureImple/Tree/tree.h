@@ -29,6 +29,43 @@ typedef struct BiTNode
 //     struct BiTNode *parent;
 // }BiTNode, *BiTree;
 
+// 树的双亲表示法，顺序存储
+typedef struct PTNode
+{
+    int data;
+    int parent;
+}PTNode;
+typedef struct PTree
+{
+    PTNode nodes[MAXSIZE];
+    int n;   //结点数
+};
+
+// 树的孩子表示法，顺序+链式存储
+struct CTNode
+{
+    int child;                  // 孩子结点在数组中的位置
+    struct CTNode *next;            // 下一个孩子结点
+};
+typedef struct CTBox
+{
+    int data;
+    struct CTNode *firstChild;      //第一个孩子
+}CTBox;
+typedef struct CTree
+{
+    CTBox nodes[MAXSIZE];
+    int n, r;       // 结点数与根所在的位置
+}CTree;
+
+// 树的左孩子右兄弟表示法，链式存储
+typedef struct CSNode
+{
+    int data;
+    struct CSNode *firstChild, *nextSibling;        // 左孩子右兄弟
+}CSNode, *CSTree;
+
+
 int InitBiTree(BiTree *tree){
     (*tree) = (BiTree)malloc(sizeof(BiTNode));
     if ((*tree)==NULL)
