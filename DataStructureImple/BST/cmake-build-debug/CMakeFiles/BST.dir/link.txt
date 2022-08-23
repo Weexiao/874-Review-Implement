@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\BST.dir/objects.a
-C:\cmake\MinGW\bin\ar.exe cr CMakeFiles\BST.dir/objects.a @CMakeFiles\BST.dir\objects1.rsp
-C:\cmake\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\BST.dir/objects.a -Wl,--no-whole-archive  -o BST.exe -Wl,--out-implib,libBST.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\BST.dir\linklibs.rsp
