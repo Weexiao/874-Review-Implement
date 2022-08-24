@@ -28,87 +28,92 @@ BSTNode *BST_Search(BSTree T, int key){
 }
 
 // 递归插入
-int BST_Insert(BSTree *Tree, int key){
-    if ((*Tree) == NULL){
-        // 直接插入
-        (*Tree) = (BSTree)malloc(sizeof(BSTree));
-        (*Tree)->key = key;
-        (*Tree)->lchild = (*Tree)->rchild = NULL;
+int BST_Insert(BSTree *T, int key){
+    // 若树为空则直接插入
+    if((*T) == NULL){
+        (*T) = (BSTNode *)malloc(sizeof(BSTNode));
+        (*T)->key = key;
+        (*T)->lchild = NULL;
+        (*T)->rchild = NULL;
         return 1;
     }
-    if (key == (*Tree)->key)
+    else if(key == (*T)->key)
         return 0;
-    else if (key < (*Tree)->key)
-        return BST_Insert(&((*Tree)->lchild), key);
+    else if(key < (*T)->key)
+        return BST_Insert(&((*T)->lchild), key);
     else
-        return BST_Insert(&((*Tree)->rchild), key);
+        return BST_Insert(&((*T)->rchild), key);
 }
 // 非递归插入，最差空间复杂度为O(1)
-int NoRBST_Insert(BSTree *Tree, int key){
+int NoRBST_Insert(BSTree *T, int key){
     // 若树为空，则直接插入
-    if ((*Tree) == NULL){
-        // 直接插入
-        (*Tree) = (BSTree)malloc(sizeof(BSTree));
-        (*Tree)->key = key;
-        (*Tree)->lchild = (*Tree)->rchild = NULL;
+    if ((*T) == NULL)
+    {
+        (*T) = (BSTNode *)malloc(sizeof(BSTNode));
+        (*T)->key = key;
+        (*T)->lchild = NULL;
+        (*T)->rchild = NULL;
         return 1;
     }
-
+    
     // 树不为空，则记录上一个节点与自己
-    BSTree pre = NULL;
-    BSTree pnow = (*Tree);
-    while (pnow != NULL){
-        // 找到最后一个节点
-        if (key == pnow->key)
+    BSTNode *pre = NULL;
+    BSTNode *now = (*T);
+    while (now != NULL)
+    {
+        if(key == now->key)
             return 0;
-        else if (key < pnow->key){
-            // 往左走
-            pre = pnow;
-            pnow = pnow->lchild;
-        } else{
-            // 往右走
-            pre = pnow;
-            pnow = pnow->rchild;
+        else if(key < now->key){
+            pre = now;
+            now = now->lchild;
+        }
+        else{
+            pre = now;
+            now = now->rchild;
         }
     }
-
+    
     // 之后判断key值与pre的关系
-    if (key < pre->key){
-        BSTNode *now = (BSTNode *)malloc(sizeof(BSTNode));
-        (*now).key = key;
-        (*now).lchild = (*now).rchild = NULL;
-        pre->lchild = now;
-    } else{
-        BSTNode *now = (BSTNode *)malloc(sizeof(BSTNode));
-        (*now).key = key;
-        (*now).lchild = (*now).rchild = NULL;
-        pre->rchild = now;
+    if (key < pre->key)
+    {
+        BSTNode *curr = (BSTNode *)malloc(sizeof(BSTNode));
+        curr->key = key;
+        curr->lchild=curr->rchild=NULL;
+        pre->lchild = curr;
     }
+    else
+    {
+        BSTNode *curr = (BSTNode *)malloc(sizeof(BSTNode));
+        curr->key = key;
+        curr->lchild=curr->rchild=NULL;
+        pre->rchild = curr;
+    }
+    return 1;
 }
 
 // 中序遍历，递归实现
-void InOrder(BSTree Tree){
-    if (Tree != NULL){
-        InOrder(Tree->lchild);
-        printf("%d", (Tree->key));
-        InOrder(Tree->rchild);
+void InOrder(BSTree T){
+    if (T != NULL){
+        InOrder(T->lchild);
+        printf("%d", (T->key));
+        InOrder(T->rchild);
     }
 }
 
-void Create_BST(BSTree *Tree, int nums[], int n){
-    (*Tree) = NULL;
+void Create_BST(BSTree *T, int nums[], int n){
+    (*T) = NULL;
     int i = 0;
     while (i<n){
-        BST_Insert(Tree, nums[i]);
+        BST_Insert(T, nums[i]);
         i++;
     }
 }
 
-void NoRCreate_BST(BSTree *Tree, int nums[], int n){
-    (*Tree) = NULL;
+void NoRCreate_BST(BSTree *T, int nums[], int n){
+    (*T) = NULL;
     int i = 0;
     while (i<n){
-        NoRBST_Insert(Tree, nums[i]);
+        NoRBST_Insert(T, nums[i]);
         i++;
     }
 }
