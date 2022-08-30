@@ -26,6 +26,47 @@ typedef struct {
     int vexnum, arcnum;             // 图当前的顶点数和弧树
 }ALGraph;
 
+// // 十字链表法
+// // 边
+// typedef struct ArcNode{
+//     int tailvex;                    // 弧尾结点
+//     int headvex;                    // 弧头结点
+//     InfoType info;                  // 弧权值
+//     ArcNode *hlink;                 // 弧头相同的下一条弧
+//     ArcNode *tlink;                 // 弧尾相同的下一条弧
+// }ArcNode;
+// // 顶点
+// typedef struct VNode{
+//     VertexType data;                // 顶点信息
+//     ArcNode *firstin;               // 该顶点作为弧头的第一条边
+//     ArcNode *firstout;              // 该顶点作为弧尾的第一条边
+// }VNode, AdjList[MaxVertexNum];
+// // 图
+// typedef struct {
+//     AdjList vertices;               // 顶点与边
+//     int vexnum, arcnum;             // 图当前的顶点数和弧树
+// }ALGraph;
+
+// 邻接多重表法
+// 边
+// typedef struct ArcNode{
+//     int i;                    // 弧尾结点
+//     int j;                    // 弧头结点
+//     InfoType info;                  // 弧权值
+//     ArcNode *ilink;                 // 依附于结点i的下一条弧
+//     ArcNode *jlink;                 // 依附于结点j的下一条弧
+// }ArcNode;
+// // 顶点
+// typedef struct VNode{
+//     VertexType data;                // 顶点信息
+//     ArcNode *first;               	// 与该顶点香玲的第一条边
+// }VNode, AdjList[MaxVertexNum];
+// // 图
+// typedef struct {
+//     AdjList vertices;               // 顶点与边
+//     int vexnum, arcnum;             // 图当前的顶点数和弧树
+// }ALGraph;
+
 int Adjacent(MGraph G, int x, int y)           // 判断图是否有边(x, y)
 {
     return G.Edge[x][y] != 0;
