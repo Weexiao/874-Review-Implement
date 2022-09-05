@@ -157,3 +157,29 @@ void InitGraph(MGraph *G){
     }
     
 }
+
+// 拓扑排序，邻接表实现
+// int TopologicalSort(ALGraph G){
+//     InitStack(&S);
+//     for(int i=0; i<G.vexnum; i++){
+//         if (indegree[i]==0)
+//         {
+//             Push(&S, i);
+//         }
+//     }
+//     int count = 0;
+//     while (!IsEmpty(S))
+//     {
+//         Pop(&S, &i);
+//         print[count++]=i;       //输出顶点i
+//         for (ArcNode *p = G.vertices[i].first; p; p = p->next)
+//         {
+//             int v=p->adjvex;
+//             if (!(--indegree[v]))
+//             {
+//                 Push(&S, v);
+//             }
+//         }
+//     }
+//     return count<G.vexnum ? 0 : 1;
+// }
