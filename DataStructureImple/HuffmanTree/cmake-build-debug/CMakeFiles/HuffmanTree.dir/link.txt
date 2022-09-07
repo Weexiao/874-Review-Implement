@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\HuffmanTree.dir/objects.a
-C:\cmake\MinGW\bin\ar.exe cr CMakeFiles\HuffmanTree.dir/objects.a @CMakeFiles\HuffmanTree.dir\objects1.rsp
-C:\cmake\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\HuffmanTree.dir/objects.a -Wl,--no-whole-archive  -o HuffmanTree.exe -Wl,--out-implib,libHuffmanTree.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\HuffmanTree.dir\linklibs.rsp
